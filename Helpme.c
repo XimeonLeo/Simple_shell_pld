@@ -10,9 +10,9 @@
  */
 void _write(char *str, int stm)
 {
-	int index;
+	int index = 0;
 
-	for (index = 0; str[index]; index++)
+	for (; str[index]; index++)
 	{
 		write(stm, &str[index], 1);
 	}
@@ -21,21 +21,21 @@ void _write(char *str, int stm)
 /**
  * tokenizer - helps to tokenize a string
  *
- * @cmd: the command to tokenize
+ * @buff: the command to tokenize
  * @delim: the delimeter used to tikenize
  *
  * Returns: an array of strings of the command tokens
  */
 
-char **tokenizer(char *cmd, char *delim)
+char **tokenizer(char *buff, char *delim)
 {
-	char *token = NULL, *tmp_cmd = NULL;
+	char *token = NULL, *tmp_buff = NULL;
 	int i = 0, num_toks = 0;
-	char **cmd_toks = NULL;
+	char **buff_toks = NULL;
 
-	tmp_cmd = strdup(cmd);
+	tmp_buff = strdup(buff);
 
-	token = strtok(tmp_cmd, delim);
+	token = strtok(tmp_buff, delim);
 
 	while (token)
 	{
@@ -44,40 +44,41 @@ char **tokenizer(char *cmd, char *delim)
 	}
 	printf("The number of tokens = %d\n", num_toks);
 
-	cmd_toks = malloc((sizeof(char *) * num_toks) + 1);
-	if (!cmd_toks)
+	buff_toks = malloc((sizeof(char *) * num_toks) + 1);
+	if (!buff_toks)
 		return (NULL);
 
 	token = NULL;
-	token = strtok(cmd, delim);
+	token = strtok(buff, delim);
 
 	i = 0;
 	while (token)
 	{
-		cmd_toks[i] = token;
+		buff_toks[i] = token;
 		token = strtok(NULL, delim);
 		i++;
 	}
-	cmd_toks[i] = NULL;
+	buff_toks[i] = NULL;
 
-	free(tmp_cmd);
+	free(tmp_buff);
 
-	return (cmd_toks);
+	return (buff_toks);
 }
 
 char *look_for_path(char **av, char **ev)
 {
 	char *path = NULL;
-	int i;
+	int i = 0;
 
-	for (i = 0; ev[i]; i++)
+	for (; ev[i]; i++)
 	{
 		if (strncmp(ev[i], "PATH=", 5) == 0)
 		{
 			path = strdup(ev[i]);
 		}
-		if (!path)
-			perror(av[0]);
 	}
+	if (!path)
+		perror(av[0]);
+
 	return (path);
 }

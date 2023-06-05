@@ -7,7 +7,7 @@
 #include <string.h>
 
 void _write(char *str, int stm);
-char **tokenizer(char *cmd, char *delim);
+char **tokenizer(char *buff, char *delim);
 char *look_for_path(char **av, char **ev);
 
 #endif
