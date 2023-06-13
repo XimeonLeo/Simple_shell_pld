@@ -83,7 +83,4 @@ Hmmm... This should help me with the mandatory tasks...😌😍🥰. There are l
 
 XL!!!
 # Error
-* memory leaks to be fixed from the main file!!!
-## To be fixed!!!
-
-## Fixed error!!!
+* memory leak again!!! find and fix. youll find it where we tried to concatenate the command tokens with the path variable
